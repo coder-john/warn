@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_mic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Websource",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "WebTable",
+		"schema": [],
+		"typeProperties": {
+			"index": 0,
+			"path": ""
+		}
+	}
+}

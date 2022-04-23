@@ -9,10 +9,13 @@
 			"value": ""
 		},
 		"HttpServer1_properties_typeProperties_url": {
-			"value": "https://www.twc.texas.gov/files/news/warn-act-listings-2022.xlsx"
+			"value": "https://www.twc.texas.gov/"
 		},
 		"Websource_properties_typeProperties_url": {
 			"value": "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.twc.texas.gov%2Ffiles%2Fnews%2Fwarn-act-listings-2022.xlsx"
+		},
+		"FtpServer1_properties_typeProperties_host": {
+			"value": "ftp://www.twc.texas.gov/files/news/warn-act-listings-2022.xlsx"
 		},
 		"containerUri": {
 			"value": ""

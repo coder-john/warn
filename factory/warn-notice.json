@@ -1,0 +1,9 @@
+{
+	"name": "warn-notice",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7f4ab01f-8699-4313-9f58-3dc55dc10706",
+		"tenantId": "a7be7067-a013-4df3-acc7-ad34cfba2a9c"
+	}
+}

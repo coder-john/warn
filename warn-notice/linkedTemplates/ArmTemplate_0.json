@@ -21,7 +21,7 @@
 		},
 		"Websource_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.twc.texas.gov%2Ffiles%2Fnews%2Fwarn-act-listings-2022.xlsx"
+			"defaultValue": "https://jfs.ohio.gov/warn/current.stm"
 		}
 	},
 	"variables": {
@@ -84,7 +84,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ohio_sink')]",
+			"name": "[concat(parameters('factoryName'), '/OhioNotices')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -92,13 +92,16 @@
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Notices"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "notices",
-						"folderPath": "ohio",
+						"fileName": "ohio.csv",
+						"folderPath": "notices",
 						"container": "warn"
 					},
 					"columnDelimiter": ",",
@@ -157,13 +160,22 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Texas_Excel_File')]",
+			"name": "[concat(parameters('factoryName'), '/texas_source')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "HttpServer1",
 					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"STATE": {
+						"type": "string",
+						"defaultValue": "Texas"
+					}
+				},
+				"folder": {
+					"name": "Sources"
 				},
 				"annotations": [],
 				"type": "Excel",
@@ -223,6 +235,9 @@
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Notices"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -251,6 +266,9 @@
 				"linkedServiceName": {
 					"referenceName": "Websource",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sources"
 				},
 				"annotations": [],
 				"type": "WebTable",
@@ -313,7 +331,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "Texas_Excel_File",
+								"referenceName": "texas_source",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -334,7 +352,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Texas_Excel_File')]",
+				"[concat(variables('factoryId'), '/datasets/texas_source')]",
 				"[concat(variables('factoryId'), '/datasets/TexasNotices')]"
 			]
 		},
@@ -383,7 +401,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "ohio_sink",
+								"referenceName": "OhioNotices",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -398,7 +416,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ohio_source')]",
-				"[concat(variables('factoryId'), '/datasets/ohio_sink')]"
+				"[concat(variables('factoryId'), '/datasets/OhioNotices')]"
 			]
 		}
 	]

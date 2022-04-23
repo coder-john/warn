@@ -1,0 +1,12 @@
+{
+	"name": "HttpServer1",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.twc.texas.gov%2Ffiles%2Fnews%2Fwarn-act-listings-2022.xlsx",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

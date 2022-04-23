@@ -1,0 +1,53 @@
+{
+	"name": "Texas_Excel_File",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "qry_Public_Information_Report_W",
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "files/news/warn-act-listings-2022.xlsx"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "NOTICE_DATE",
+				"type": "String"
+			},
+			{
+				"name": "JOB_SITE_NAME",
+				"type": "String"
+			},
+			{
+				"name": "COUNTY_NAME",
+				"type": "String"
+			},
+			{
+				"name": "WDA_NAME",
+				"type": "String"
+			},
+			{
+				"name": "TOTAL_LAYOFF_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "LayOff_Date",
+				"type": "String"
+			},
+			{
+				"name": "WFDD_RECEIVED_DATE",
+				"type": "String"
+			},
+			{
+				"name": "CITY_NAME",
+				"type": "String"
+			}
+		]
+	}
+}

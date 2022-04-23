@@ -45,7 +45,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Texas_Excel_File",
+						"referenceName": "texas_source",
 						"type": "DatasetReference"
 					}
 				],

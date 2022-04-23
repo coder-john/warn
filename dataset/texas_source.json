@@ -1,9 +1,15 @@
 {
-	"name": "Texas_Excel_File",
+	"name": "texas_source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "HttpServer1",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"STATE": {
+				"type": "string",
+				"defaultValue": "Texas"
+			}
 		},
 		"annotations": [],
 		"type": "Excel",

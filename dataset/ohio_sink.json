@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_mic",
+	"name": "ohio_sink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",

@@ -34,13 +34,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_mic",
+						"referenceName": "ohio_source",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_mic",
+						"referenceName": "ohio_sink",
 						"type": "DatasetReference"
 					}
 				]

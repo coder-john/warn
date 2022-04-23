@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "notices",
-				"folderPath": "ohio",
+				"fileName": "ohio.csv",
+				"folderPath": "notices",
 				"container": "warn"
 			},
 			"columnDelimiter": ",",

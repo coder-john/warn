@@ -8,8 +8,11 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://www.twc.texas.gov/files/news/warn-act-listings-2022.xlsx"
+		},
 		"Websource_properties_typeProperties_url": {
-			"value": "https://jfs.ohio.gov/warn/current.stm"
+			"value": "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.twc.texas.gov%2Ffiles%2Fnews%2Fwarn-act-listings-2022.xlsx"
 		},
 		"containerUri": {
 			"value": ""

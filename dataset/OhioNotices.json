@@ -1,9 +1,12 @@
 {
-	"name": "ohio_sink",
+	"name": "OhioNotices",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Notices"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

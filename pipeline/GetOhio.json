@@ -40,7 +40,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ohio_sink",
+						"referenceName": "OhioNotices",
 						"type": "DatasetReference"
 					}
 				]

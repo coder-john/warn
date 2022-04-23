@@ -11,6 +11,9 @@
 				"defaultValue": "Texas"
 			}
 		},
+		"folder": {
+			"name": "Sources"
+		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {

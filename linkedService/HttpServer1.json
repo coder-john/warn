@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://www.twc.texas.gov/files/news/warn-act-listings-2022.xlsx",
+			"url": "https://www.twc.texas.gov/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}

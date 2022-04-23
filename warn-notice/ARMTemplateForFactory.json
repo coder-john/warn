@@ -48,7 +48,13 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "WebSource"
+								"type": "WebSource",
+								"additionalColumns": [
+									{
+										"name": "STATE",
+										"value": "OHIO"
+									}
+								]
 							},
 							"sink": {
 								"type": "DelimitedTextSink",
@@ -62,7 +68,102 @@
 								}
 							},
 							"enableStaging": false,
-							"validateDataConsistency": false
+							"validateDataConsistency": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Date Received",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Date Received",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Company",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Company",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "City/County",
+											"type": "String"
+										},
+										"sink": {
+											"name": "City/County",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Potential Number Affected",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Potential Number Affected",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Layoff Date(s)",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Layoff Date(s)",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Phone Number",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Phone Number",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Union",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Union",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Notice ID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Notice ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "STATE",
+											"type": "String"
+										},
+										"sink": {
+											"name": "STATE",
+											"type": "String"
+										}
+									}
+								]
+							}
 						},
 						"inputs": [
 							{
@@ -114,6 +215,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
+					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
 				"schema": [
@@ -254,12 +356,6 @@
 				"linkedServiceName": {
 					"referenceName": "HttpServer1",
 					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"STATE": {
-						"type": "string",
-						"defaultValue": "Texas"
-					}
 				},
 				"folder": {
 					"name": "Sources"

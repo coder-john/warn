@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_b1j",
+	"name": "texas_sink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",

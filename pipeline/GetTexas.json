@@ -41,13 +41,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_b1j",
+						"referenceName": "texas_source",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_b1j",
+						"referenceName": "texas_sink",
 						"type": "DatasetReference"
 					}
 				]

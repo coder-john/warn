@@ -5,12 +5,6 @@
 			"referenceName": "HttpServer1",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"STATE": {
-				"type": "string",
-				"defaultValue": "Texas"
-			}
-		},
 		"folder": {
 			"name": "Sources"
 		},

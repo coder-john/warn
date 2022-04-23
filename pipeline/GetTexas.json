@@ -17,6 +17,12 @@
 				"typeProperties": {
 					"source": {
 						"type": "ExcelSource",
+						"additionalColumns": [
+							{
+								"name": "STATE",
+								"value": "TEXAS"
+							}
+						],
 						"storeSettings": {
 							"type": "HttpReadSettings",
 							"requestMethod": "GET"

@@ -11,7 +11,8 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "notices.csv",
-				"container": "texas"
+				"folderPath": "texas",
+				"container": "warn"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

@@ -1,0 +1,14 @@
+{
+	"name": "FtpServer1",
+	"properties": {
+		"annotations": [],
+		"type": "FtpServer",
+		"typeProperties": {
+			"host": "ftp://www.twc.texas.gov/files/news/warn-act-listings-2022.xlsx",
+			"port": 21,
+			"enableSsl": true,
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

@@ -9,7 +9,10 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation"
+				"type": "AzureBlobStorageLocation",
+				"fileName": "texas.csv",
+				"folderPath": "notices",
+				"container": "warn"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

@@ -26,6 +26,9 @@
 				},
 				{
 					"name": "OhioFlow"
+				},
+				{
+					"name": "AddTexas"
 				}
 			],
 			"scriptLines": [
@@ -76,7 +79,8 @@
 				"          STATE",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> OhioFlow"
+				"     skipDuplicateMapOutputs: true) ~> OhioFlow",
+				"OhioFlow, OhioFlow union(byName: true)~> AddTexas"
 			]
 		}
 	}

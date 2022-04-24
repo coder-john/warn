@@ -84,6 +84,35 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/CombinedNotices')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "notices.csv",
+						"folderPath": "combined",
+						"container": "warn"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/OhioNotices')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -180,35 +209,23 @@
 				},
 				"schema": [
 					{
-						"name": "NOTICE_DATE",
+						"name": "COMPANY",
 						"type": "String"
 					},
 					{
-						"name": "JOB_SITE_NAME",
+						"name": "NUMBER_AFFECTED",
 						"type": "String"
 					},
 					{
-						"name": "COUNTY_NAME",
+						"name": "LAYOFF_DATE",
 						"type": "String"
 					},
 					{
-						"name": "WDA_NAME",
+						"name": "DATE_RECEIVED",
 						"type": "String"
 					},
 					{
-						"name": "TOTAL_LAYOFF_NUMBER",
-						"type": "String"
-					},
-					{
-						"name": "LayOff_Date",
-						"type": "String"
-					},
-					{
-						"name": "WFDD_RECEIVED_DATE",
-						"type": "String"
-					},
-					{
-						"name": "CITY_NAME",
+						"name": "CITY_OR_COUNTY",
 						"type": "String"
 					},
 					{
@@ -216,38 +233,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/TotalNotices')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Notices"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "total.csv",
-						"folderPath": "notices",
-						"container": "warn"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
@@ -335,206 +320,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "notices",
-						"container": "warn"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CombineAll')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"wildcardFolderPath": "notices",
-									"wildcardFileName": "*",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"copyBehavior": "MergeFiles"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Date Received",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "DATE_RECEIVED",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Company",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "COMPANY",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Potential Number Affected",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "NUMBER_AFFECTED",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "City/County",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "CITY_OR_COUNTY",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Layoff Date(s)",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "LAYOFF_DATE",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Union",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "UNION",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Notice ID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "NOTICE_ID",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "STATE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "STATE",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DelimitedText1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "TotalNotices",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
-				"[concat(variables('factoryId'), '/datasets/TotalNotices')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/GetTexas')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -583,12 +368,49 @@
 								"mappings": [
 									{
 										"source": {
+											"name": "NOTICE_DATE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NOTICE_DATE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "JOB_SITE_NAME",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "JOB_SITE_NAME",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "COUNTY_NAME",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "COUNTY_NAME",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
 											"name": "WDA_NAME",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "COMPANY",
+											"name": "WDA_NAME",
+											"type": "String",
 											"physicalType": "String"
 										}
 									},
@@ -599,7 +421,8 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "NUMBER_AFFECTED",
+											"name": "TOTAL_LAYOFF_NUMBER",
+											"type": "String",
 											"physicalType": "String"
 										}
 									},
@@ -610,7 +433,8 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "LAYOFF_DATE",
+											"name": "LayOff_Date",
+											"type": "String",
 											"physicalType": "String"
 										}
 									},
@@ -621,7 +445,8 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "DATE_RECEIVED",
+											"name": "WFDD_RECEIVED_DATE",
+											"type": "String",
 											"physicalType": "String"
 										}
 									},
@@ -632,7 +457,8 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "CITY_OR_COUNTY",
+											"name": "CITY_NAME",
+											"type": "String",
 											"physicalType": "String"
 										}
 									},
@@ -704,6 +530,109 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Websource')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CombineAllNotices')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "OhioNotices",
+								"type": "DatasetReference"
+							},
+							"name": "Ohio"
+						},
+						{
+							"dataset": {
+								"referenceName": "TexasNotices",
+								"type": "DatasetReference"
+							},
+							"name": "Texas"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "CombinedNotices",
+								"type": "DatasetReference"
+							},
+							"name": "Output"
+						}
+					],
+					"transformations": [
+						{
+							"name": "TexasFlow"
+						},
+						{
+							"name": "OhioFlow"
+						},
+						{
+							"name": "AddTexas"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          {Date Received} as string,",
+						"          Company as string,",
+						"          {City/County} as string,",
+						"          {Potential Number Affected} as string,",
+						"          {Layoff Date(s)} as string,",
+						"          {Phone Number} as string,",
+						"          Union as string,",
+						"          {Notice ID} as string,",
+						"          STATE as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Ohio",
+						"source(output(",
+						"          COMPANY as string,",
+						"          NUMBER_AFFECTED as string,",
+						"          LAYOFF_DATE as string,",
+						"          DATE_RECEIVED as string,",
+						"          CITY_OR_COUNTY as string,",
+						"          STATE as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Texas",
+						"Texas select(mapColumn(",
+						"          COMPANY,",
+						"          NUMBER_AFFECTED,",
+						"          LAYOFF_DATE,",
+						"          DATE_RECEIVED,",
+						"          CITY_OR_COUNTY,",
+						"          STATE",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> TexasFlow",
+						"Ohio select(mapColumn(",
+						"          RECEIVED_DATE = {Date Received},",
+						"          COMPANY = Company,",
+						"          CITY_OR_COUNTY = {City/County},",
+						"          LAYOFF_NUMBER = {Potential Number Affected},",
+						"          LAYOFF_DATE = {Layoff Date(s)},",
+						"          STATE",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> OhioFlow",
+						"OhioFlow, OhioFlow union(byName: true)~> AddTexas",
+						"AddTexas sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> Output"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/OhioNotices')]",
+				"[concat(variables('factoryId'), '/datasets/TexasNotices')]",
+				"[concat(variables('factoryId'), '/datasets/CombinedNotices')]"
 			]
 		},
 		{
@@ -857,165 +786,6 @@
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "WebSource",
-								"additionalColumns": [
-									{
-										"name": "STATE",
-										"value": "OHIO"
-									}
-								]
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Date Received",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Date Received",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Company",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Company",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "City/County",
-											"type": "String"
-										},
-										"sink": {
-											"name": "City/County",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Potential Number Affected",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Potential Number Affected",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Layoff Date(s)",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Layoff Date(s)",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Phone Number",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Phone Number",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Union",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Union",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Notice ID",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Notice ID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "STATE",
-											"type": "String"
-										},
-										"sink": {
-											"name": "STATE",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ohio_source",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "OhioNotices",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
 					}
 				],
 				"policy": {
@@ -1027,6 +797,54 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ohio_source')]",
 				"[concat(variables('factoryId'), '/datasets/OhioNotices')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MergePipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CombineAllNotices",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "1.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "CombineAllNotices",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Ohio": {},
+									"Texas": {},
+									"Output": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/CombineAllNotices')]"
 			]
 		}
 	]

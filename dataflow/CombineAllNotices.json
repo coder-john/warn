@@ -26,6 +26,9 @@
 				},
 				{
 					"name": "select2"
+				},
+				{
+					"name": "AddTexas"
 				}
 			],
 			"scriptLines": [
@@ -76,7 +79,8 @@
 				"          STATE",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select2"
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"Ohio, Texas union(byName: true)~> AddTexas"
 			]
 		}
 	}

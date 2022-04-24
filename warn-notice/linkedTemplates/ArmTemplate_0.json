@@ -209,23 +209,35 @@
 				},
 				"schema": [
 					{
-						"name": "COMPANY",
+						"name": "NOTICE_DATE",
 						"type": "String"
 					},
 					{
-						"name": "NUMBER_AFFECTED",
+						"name": "JOB_SITE_NAME",
 						"type": "String"
 					},
 					{
-						"name": "LAYOFF_DATE",
+						"name": "COUNTY_NAME",
 						"type": "String"
 					},
 					{
-						"name": "DATE_RECEIVED",
+						"name": "WDA_NAME",
 						"type": "String"
 					},
 					{
-						"name": "CITY_OR_COUNTY",
+						"name": "TOTAL_LAYOFF_NUMBER",
+						"type": "String"
+					},
+					{
+						"name": "LayOff_Date",
+						"type": "String"
+					},
+					{
+						"name": "WFDD_RECEIVED_DATE",
+						"type": "String"
+					},
+					{
+						"name": "CITY_NAME",
 						"type": "String"
 					},
 					{
@@ -566,13 +578,13 @@
 					],
 					"transformations": [
 						{
-							"name": "TexasFlow"
+							"name": "StandardizeOhio"
 						},
 						{
-							"name": "OhioFlow"
+							"name": "StandardizeTexas"
 						},
 						{
-							"name": "AddTexas"
+							"name": "AddOhio"
 						}
 					],
 					"scriptLines": [
@@ -591,26 +603,19 @@
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false) ~> Ohio",
 						"source(output(",
-						"          COMPANY as string,",
-						"          NUMBER_AFFECTED as string,",
-						"          LAYOFF_DATE as string,",
-						"          DATE_RECEIVED as string,",
-						"          CITY_OR_COUNTY as string,",
+						"          NOTICE_DATE as string,",
+						"          JOB_SITE_NAME as string,",
+						"          COUNTY_NAME as string,",
+						"          WDA_NAME as string,",
+						"          TOTAL_LAYOFF_NUMBER as string,",
+						"          LayOff_Date as string,",
+						"          WFDD_RECEIVED_DATE as string,",
+						"          CITY_NAME as string,",
 						"          STATE as string",
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false) ~> Texas",
-						"Texas select(mapColumn(",
-						"          COMPANY,",
-						"          NUMBER_AFFECTED,",
-						"          LAYOFF_DATE,",
-						"          DATE_RECEIVED,",
-						"          CITY_OR_COUNTY,",
-						"          STATE",
-						"     ),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> TexasFlow",
 						"Ohio select(mapColumn(",
 						"          RECEIVED_DATE = {Date Received},",
 						"          COMPANY = Company,",
@@ -620,9 +625,19 @@
 						"          STATE",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> OhioFlow",
-						"OhioFlow, OhioFlow union(byName: true)~> AddTexas",
-						"AddTexas sink(allowSchemaDrift: true,",
+						"     skipDuplicateMapOutputs: true) ~> StandardizeOhio",
+						"Texas select(mapColumn(",
+						"          COMPANY = WDA_NAME,",
+						"          LAYOFF_NUMBER = TOTAL_LAYOFF_NUMBER,",
+						"          LAYOFF_DATE = LayOff_Date,",
+						"          RECEIVED_DATE = WFDD_RECEIVED_DATE,",
+						"          CITY_OR_COUNTY = CITY_NAME,",
+						"          STATE",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> StandardizeTexas",
+						"StandardizeTexas, StandardizeOhio union(byName: true)~> AddOhio",
+						"AddOhio sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> Output"

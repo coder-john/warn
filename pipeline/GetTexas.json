@@ -45,12 +45,49 @@
 						"mappings": [
 							{
 								"source": {
+									"name": "NOTICE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NOTICE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "JOB_SITE_NAME",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "JOB_SITE_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COUNTY_NAME",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COUNTY_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
 									"name": "WDA_NAME",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "COMPANY",
+									"name": "WDA_NAME",
+									"type": "String",
 									"physicalType": "String"
 								}
 							},
@@ -61,7 +98,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "NUMBER_AFFECTED",
+									"name": "TOTAL_LAYOFF_NUMBER",
+									"type": "String",
 									"physicalType": "String"
 								}
 							},
@@ -72,7 +110,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAYOFF_DATE",
+									"name": "LayOff_Date",
+									"type": "String",
 									"physicalType": "String"
 								}
 							},
@@ -83,7 +122,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "DATE_RECEIVED",
+									"name": "WFDD_RECEIVED_DATE",
+									"type": "String",
 									"physicalType": "String"
 								}
 							},
@@ -94,7 +134,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CITY_OR_COUNTY",
+									"name": "CITY_NAME",
+									"type": "String",
 									"physicalType": "String"
 								}
 							},

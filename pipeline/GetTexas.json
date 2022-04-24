@@ -45,49 +45,12 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "NOTICE_DATE",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NOTICE_DATE",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "JOB_SITE_NAME",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "JOB_SITE_NAME",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "COUNTY_NAME",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "COUNTY_NAME",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "WDA_NAME",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "WDA_NAME",
-									"type": "String",
+									"name": "COMPANY",
 									"physicalType": "String"
 								}
 							},
@@ -98,8 +61,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "TOTAL_LAYOFF_NUMBER",
-									"type": "String",
+									"name": "NUMBER_AFFECTED",
 									"physicalType": "String"
 								}
 							},
@@ -110,8 +72,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LayOff_Date",
-									"type": "String",
+									"name": "LAYOFF_DATE",
 									"physicalType": "String"
 								}
 							},
@@ -122,8 +83,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "WFDD_RECEIVED_DATE",
-									"type": "String",
+									"name": "DATE_RECEIVED",
 									"physicalType": "String"
 								}
 							},
@@ -134,8 +94,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CITY_NAME",
-									"type": "String",
+									"name": "CITY_OR_COUNTY",
 									"physicalType": "String"
 								}
 							},

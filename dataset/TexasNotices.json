@@ -22,6 +22,43 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "NOTICE_DATE",
+				"type": "String"
+			},
+			{
+				"name": "JOB_SITE_NAME",
+				"type": "String"
+			},
+			{
+				"name": "COUNTY_NAME",
+				"type": "String"
+			},
+			{
+				"name": "WDA_NAME",
+				"type": "String"
+			},
+			{
+				"name": "TOTAL_LAYOFF_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "LayOff_Date",
+				"type": "String"
+			},
+			{
+				"name": "WFDD_RECEIVED_DATE",
+				"type": "String"
+			},
+			{
+				"name": "CITY_NAME",
+				"type": "String"
+			},
+			{
+				"name": "STATE",
+				"type": "String"
+			}
+		]
 	}
 }

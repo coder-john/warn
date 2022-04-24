@@ -31,7 +31,8 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "MergeFiles"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -42,6 +43,116 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Date Received",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date Received",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Company",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "City/County",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "City/County",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Potential Number Affected",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Potential Number Affected",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Layoff Date(s)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Layoff Date(s)",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Phone Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Phone Number",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Union",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Union",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Notice ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Notice ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,

@@ -22,13 +22,10 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "select1"
+					"name": "StandardizeOhio"
 				},
 				{
-					"name": "select2"
-				},
-				{
-					"name": "AddTexas"
+					"name": "StandardizeTexas"
 				}
 			],
 			"scriptLines": [
@@ -69,7 +66,7 @@
 				"          STATE",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"     skipDuplicateMapOutputs: true) ~> StandardizeOhio",
 				"Texas select(mapColumn(",
 				"          COMPANY = WDA_NAME,",
 				"          LAYOFF_NUMBER = TOTAL_LAYOFF_NUMBER,",
@@ -79,8 +76,7 @@
 				"          STATE",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select2",
-				"Ohio, Texas union(byName: true)~> AddTexas"
+				"     skipDuplicateMapOutputs: true) ~> StandardizeTexas"
 			]
 		}
 	}

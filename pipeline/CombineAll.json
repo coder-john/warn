@@ -70,18 +70,6 @@
 							},
 							{
 								"source": {
-									"name": "City/County",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "City/County",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "Potential Number Affected",
 									"type": "String",
 									"physicalType": "String"
@@ -94,24 +82,24 @@
 							},
 							{
 								"source": {
-									"name": "Layoff Date(s)",
+									"name": "City/County",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Layoff Date(s)",
+									"name": "City/County",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "Phone Number",
+									"name": "Layoff Date(s)",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Phone Number",
+									"name": "Layoff Date(s)",
 									"type": "String",
 									"physicalType": "String"
 								}

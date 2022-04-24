@@ -19,7 +19,15 @@
 					"name": "Texas"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "CombinedNotices",
+						"type": "DatasetReference"
+					},
+					"name": "Output"
+				}
+			],
 			"transformations": [
 				{
 					"name": "TexasFlow"
@@ -80,7 +88,11 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> OhioFlow",
-				"OhioFlow, OhioFlow union(byName: true)~> AddTexas"
+				"OhioFlow, OhioFlow union(byName: true)~> AddTexas",
+				"AddTexas sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Output"
 			]
 		}
 	}

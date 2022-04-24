@@ -19,26 +19,8 @@
 					"name": "Texas"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "CombinedNotices",
-						"type": "DatasetReference"
-					},
-					"name": "Output"
-				}
-			],
-			"transformations": [
-				{
-					"name": "TexasFlow"
-				},
-				{
-					"name": "OhioFlow"
-				},
-				{
-					"name": "AddTexas"
-				}
-			],
+			"sinks": [],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          {Date Received} as string,",
@@ -55,41 +37,19 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Ohio",
 				"source(output(",
-				"          COMPANY as string,",
-				"          NUMBER_AFFECTED as string,",
-				"          LAYOFF_DATE as string,",
-				"          DATE_RECEIVED as string,",
-				"          CITY_OR_COUNTY as string,",
+				"          NOTICE_DATE as string,",
+				"          JOB_SITE_NAME as string,",
+				"          COUNTY_NAME as string,",
+				"          WDA_NAME as string,",
+				"          TOTAL_LAYOFF_NUMBER as string,",
+				"          LayOff_Date as string,",
+				"          WFDD_RECEIVED_DATE as string,",
+				"          CITY_NAME as string,",
 				"          STATE as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Texas",
-				"Texas select(mapColumn(",
-				"          COMPANY,",
-				"          NUMBER_AFFECTED,",
-				"          LAYOFF_DATE,",
-				"          DATE_RECEIVED,",
-				"          CITY_OR_COUNTY,",
-				"          STATE",
-				"     ),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> TexasFlow",
-				"Ohio select(mapColumn(",
-				"          RECEIVED_DATE = {Date Received},",
-				"          COMPANY = Company,",
-				"          CITY_OR_COUNTY = {City/County},",
-				"          LAYOFF_NUMBER = {Potential Number Affected},",
-				"          LAYOFF_DATE = {Layoff Date(s)},",
-				"          STATE",
-				"     ),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> OhioFlow",
-				"OhioFlow, OhioFlow union(byName: true)~> AddTexas",
-				"AddTexas sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> Output"
+				"     ignoreNoFilesFound: false) ~> Texas"
 			]
 		}
 	}

@@ -51,8 +51,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Date Received",
-									"type": "String",
+									"name": "DATE_RECEIVED",
 									"physicalType": "String"
 								}
 							},
@@ -63,8 +62,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Company",
-									"type": "String",
+									"name": "COMPANY",
 									"physicalType": "String"
 								}
 							},
@@ -75,8 +73,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Potential Number Affected",
-									"type": "String",
+									"name": "NUMBER_AFFECTED",
 									"physicalType": "String"
 								}
 							},
@@ -87,8 +84,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "City/County",
-									"type": "String",
+									"name": "CITY_OR_COUNTY",
 									"physicalType": "String"
 								}
 							},
@@ -99,8 +95,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Layoff Date(s)",
-									"type": "String",
+									"name": "LAYOFF_DATE",
 									"physicalType": "String"
 								}
 							},
@@ -111,8 +106,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Union",
-									"type": "String",
+									"name": "UNION",
 									"physicalType": "String"
 								}
 							},
@@ -123,8 +117,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Notice ID",
-									"type": "String",
+									"name": "NOTICE_ID",
 									"physicalType": "String"
 								}
 							},

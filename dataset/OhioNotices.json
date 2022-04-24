@@ -24,27 +24,39 @@
 		},
 		"schema": [
 			{
+				"name": "Date Received",
 				"type": "String"
 			},
 			{
+				"name": "Company",
 				"type": "String"
 			},
 			{
+				"name": "City/County",
 				"type": "String"
 			},
 			{
+				"name": "Potential Number Affected",
 				"type": "String"
 			},
 			{
+				"name": "Layoff Date(s)",
 				"type": "String"
 			},
 			{
+				"name": "Phone Number",
 				"type": "String"
 			},
 			{
+				"name": "Union",
 				"type": "String"
 			},
 			{
+				"name": "Notice ID",
+				"type": "String"
+			},
+			{
+				"name": "STATE",
 				"type": "String"
 			}
 		]

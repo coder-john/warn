@@ -168,11 +168,119 @@
 							}
 						]
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Date Received",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DATE_RECEIVED",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Company",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMPANY",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "City/County",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CITY_OR_COUNTY",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Potential Number Affected",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NUMBER_AFFECTED",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Layoff Date(s)",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LAYOFF_DATE",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Union",
+									"type": "String"
+								},
+								"sink": {
+									"name": "UNION",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Notice ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NOTICE_ID",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "ohio_source",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OhioNotices",
 						"type": "DatasetReference"
 					}
 				]

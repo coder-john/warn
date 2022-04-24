@@ -850,9 +850,17 @@
 						"     skipDuplicateMapOutputs: true) ~> StandardizeTexas",
 						"StandardizeTexas, StandardizeOhio union(byName: true)~> AddOhio",
 						"AddOhio sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
+						"     validateSchema: true,",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> Output"
+						"     skipDuplicateMapOutputs: true,",
+						"     mapColumn(",
+						"          COMPANY,",
+						"          LAYOFF_NUMBER,",
+						"          LAYOFF_DATE,",
+						"          RECEIVED_DATE,",
+						"          CITY_OR_COUNTY,",
+						"          STATE",
+						"     )) ~> Output"
 					]
 				}
 			},

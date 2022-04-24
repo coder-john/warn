@@ -19,13 +19,24 @@
 					"name": "Texas"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "CombinedNotices",
+						"type": "DatasetReference"
+					},
+					"name": "Output"
+				}
+			],
 			"transformations": [
 				{
 					"name": "StandardizeOhio"
 				},
 				{
 					"name": "StandardizeTexas"
+				},
+				{
+					"name": "AddOhio"
 				}
 			],
 			"scriptLines": [
@@ -76,7 +87,12 @@
 				"          STATE",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> StandardizeTexas"
+				"     skipDuplicateMapOutputs: true) ~> StandardizeTexas",
+				"StandardizeTexas, StandardizeOhio union(byName: true)~> AddOhio",
+				"AddOhio sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Output"
 			]
 		}
 	}

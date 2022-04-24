@@ -8,14 +8,14 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
+		"FtpServer1_properties_typeProperties_host": {
+			"value": "ftp://www.twc.texas.gov/files/news/warn-act-listings-2022.xlsx"
+		},
 		"HttpServer1_properties_typeProperties_url": {
 			"value": "https://www.twc.texas.gov/"
 		},
 		"Websource_properties_typeProperties_url": {
 			"value": "https://jfs.ohio.gov/warn/current.stm"
-		},
-		"FtpServer1_properties_typeProperties_host": {
-			"value": "ftp://www.twc.texas.gov/files/news/warn-act-listings-2022.xlsx"
 		}
 	}
 }

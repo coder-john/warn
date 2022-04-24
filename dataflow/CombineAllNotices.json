@@ -20,7 +20,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          {Date Received} as string,",
@@ -49,7 +53,17 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Texas"
+				"     ignoreNoFilesFound: false) ~> Texas",
+				"Ohio select(mapColumn(",
+				"          RECEIVED_DATE = {Date Received},",
+				"          COMPANY = Company,",
+				"          CITY_OR_COUNTY = {City/County},",
+				"          LAYOFF_NUMBER = {Potential Number Affected},",
+				"          LAYOFF_DATE = {Layoff Date(s)},",
+				"          STATE",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
